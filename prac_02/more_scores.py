@@ -1,4 +1,6 @@
 import random
+
+
 def check_valid(score):
     while score < 0 or score > 100:
         print("Invalid score")
@@ -16,6 +18,7 @@ def get_result(score):
     elif score >= 0:
         return "Bad"
 
+
 def display_menu():
     print("(E)nter a number of scores \n(G)enerate random numbers (scores) "
           "\n(W)rite the 'result' to a file \n(Q)uit")  # display menu
@@ -29,26 +32,34 @@ def main():
 
     while choice != "Q":
         if choice == "E":
-           score.append(input("Enter a number of scores:"))
+           score.append(int(check_valid(float(input("Enter a number of scores:")))))
            display_menu()  # display menu
            choice = input()  # get choice
 
         elif choice == "G":
-            random_score = random.randrange(0,100)
+            random_score = random.randrange(0, 100)
             score.append(random_score)
             print("The random score is ", random_score)
             display_menu()  # display menu
             choice = input()  # get choice
 
         elif choice == "W":
-            for result in score:
-                line = '%s is %s' % (result, get_result(float(result)))
-                print(line)
-                f.write(line)
-                f.write('\n')
+            write_file(f, score)
             display_menu()  # display menu
             choice = input()  # get choice
-    print("Finished.")
+        else:
+            print("Invalid choice")  # display invalid message
+            display_menu()  # display menu
+            choice = input()  # get choice
+    print("Thank you!")
+
+
+def write_file(f, score):
+    for result in score:
+        line = '%s is %s' % (result, get_result(float(result)))
+        print(line)
+        f.write(line)
+        f.write('\n')
 
 
 main()
