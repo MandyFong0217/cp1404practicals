@@ -28,3 +28,10 @@ def return_score_status(score):
 
 
 main()
+
+
+def check_valid(score):
+    while score < 0 or score > 100:
+        print("Invalid score")
+        score = int(input("Input a valid score:"))
+    return score
