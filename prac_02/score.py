@@ -9,7 +9,7 @@ def main():
     """determine score status"""
     score = float(input("Enter Score: "))
     print(return_score_status(score))
-    random_score = random.randrange(0,100)
+    random_score = random.randrange(0, 100)
     print("random_score:", random_score)
     print(return_score_status(random_score))
 

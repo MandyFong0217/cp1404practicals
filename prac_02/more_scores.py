@@ -32,9 +32,9 @@ def main():
 
     while choice != "Q":
         if choice == "E":
-           score.append(int(check_valid(float(input("Enter a number of scores:")))))
-           display_menu()  # display menu
-           choice = input()  # get choice
+            score.append(int(check_valid(float(input("Enter a number of scores:")))))
+            display_menu()  # display menu
+            choice = input()  # get choice
 
         elif choice == "G":
             random_score = random.randrange(0, 100)

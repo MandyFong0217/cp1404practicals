@@ -1,28 +1,27 @@
-"""Module docstring"""
+"""
+score menu
+"""
 
-
-# imports
-import random
-# CONSTANTS
 
 def main():
     """Function docstring"""
     # statements...
+    score = 0
     display_menu()
     choice = input("Your choice:")  # get choice
-    while choice != "Q":
-        if choice == "G":
+    while choice.upper() != "Q":
+        if choice.upper() == "G":
             "Get a valid score (must be 0-100 inclusive)"
             score = int(input("Input a valid score:"))
             score = check_valid(score)
             display_menu()
             choice = input("Your choice:")  # get choice
-        elif choice == "P":
+        elif choice.upper() == "P":
             "Print result"
             print(get_result(score))
             display_menu()
             choice = input("Your choice:")  # get choice
-        elif choice == "S":
+        elif choice.upper() == "S":
             "Show stars (this should print as many stars as the score)"
             print_stars(score)
             display_menu()
@@ -60,7 +59,9 @@ def check_valid(score):
 
 def display_menu():
     print(
-        "(G)et a valid score (must be 0-100 inclusive)\n(P)rint result (copy or import your function to determine the result from score.py)\n(S)how stars (this should print as many stars as the score)\n(Q)uit")  # display menu
+        "(G)et a valid score (must be 0-100 inclusive)\n"
+        "(P)rint result (copy or import your function to determine the result from score.py)"
+        "\n(S)how stars (this should print as many stars as the score)\n(Q)uit")  # display menu
 
 
 main()
