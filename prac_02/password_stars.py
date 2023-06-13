@@ -1,14 +1,27 @@
-#  write a program that asks the user for a password, with error-checking to repeat if the password doesn't meet a minimum length set by a variable.
-# The program should then print asterisks as long as the word.
-# Example: if the user enters Pythonista (10 characters), the program should print **********.
+"""
+password stars
+"""
 
-mini_length_password = 6
-password = input("Input password:")
 
-while len(password) < mini_length_password:
-    print("wrong")
+def main():
+    mini_length_password = 10
+    password = get_password(mini_length_password)
+    print_star(password)
+
+
+def print_star(password):
+    """print asterisks as long as the word"""
+    for i in range(len(password)):
+        print("*", end='')
+
+
+def get_password(mini_length_password):
+    """get and check the password"""
     password = input("Input password:")
+    while len(password) < mini_length_password:
+        print("Invalid Password")
+        password = input("Input again:")
+    return password
 
-for i in range(len(password)):
-    print("*", end = '')
 
+main()
