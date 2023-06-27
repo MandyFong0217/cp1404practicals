@@ -42,7 +42,6 @@ print(f"{year} {name} for about ${cost:,.0f}!")
 #  50
 # 100
 # 150
-loop_number = 0
-for i in range(4):
-    print(f'{loop_number:3}')
-    loop_number = loop_number + 50
+for i in range(0, 200, 50):
+    print("{:3}".format(i))
+

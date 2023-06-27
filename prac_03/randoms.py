@@ -14,8 +14,8 @@ def main():
     # What did you see on line 1? 5
     # What was the smallest number you could have seen, what was the largest?5,20
 
-    # What did you see on line 2?3 What was the smallest number you could have seen, what was the largest?3,
-    # 9 Could line 2 have produced a 4?no because the program Returns any random integer from 3 to 10 with step 2.it
+    # What did you see on line 2?3 What was the smallest number you could have seen, what was the largest?3,9
+    # Could line 2 have produced a 4?no because the program Returns any random integer from 3 to 10 with step 2.it
     # will be 3,5,7,9
 
     # What did you see on line 3?3.833085658945019
