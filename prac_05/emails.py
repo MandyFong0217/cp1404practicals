@@ -1,5 +1,7 @@
 """
 stores users' emails by  dictionary
+Estimate: 40 minutes
+Actual:   30 minutes
 """
 
 account_list = {}
