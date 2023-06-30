@@ -1,12 +1,9 @@
-"""Module docstring"""
+"""
+look up hexadecimal colour codes
+"""
 
-
-# imports
-# CONSTANTS
 
 def main():
-    """Function docstring"""
-    # statements...
     COLOUR_TO_CODE = {
         "eggplant": "#614051", "eggshell": "#f0ead6", "egyptian blue": "#1034a6",
         "electric blue": "#7df9ff", "aliceblue": "#f0f8ff", "aquamarine1": "#7fffd4",

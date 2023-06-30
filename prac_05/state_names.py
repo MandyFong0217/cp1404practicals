@@ -13,7 +13,7 @@ state_code = input("Enter short state: ")
 # 3.make lowercase inputs also work
 state_code = state_code.upper()
 while state_code != "":
-    # 5.chane to Easier to Ask Forgiveness than Permission approach
+    # 5.change to Easier to Ask Forgiveness than Permission approach
     try:
         CODE_TO_NAME[state_code]
         print(state_code, "is", CODE_TO_NAME[state_code])
