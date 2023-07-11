@@ -13,6 +13,7 @@ def main():
 
 
 def get_data():
+    # 2.Modify the function to return the data as a list of lists
     """Read data from file formatted like: subject,lecturer,number of students."""
     input_file = open(FILENAME)
     data = []

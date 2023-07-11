@@ -1,13 +1,17 @@
-"""Module docstring"""
+"""
+Basic list operations
+&
+Woefully inadequate security checker
+"""
 
-
-# imports
-# CONSTANTS
 
 def list_numbers():
-    """Function docstring"""
+    """Basic list operations"""
+    # This function list first,last,smallest,largest,average number
     num_numbers = 5
     numbers = []
+    first_number = ''
+    last_number = ''
     for i in range(num_numbers):
         number = input('numbers:')
         numbers.append(int(number))
@@ -24,7 +28,7 @@ def list_numbers():
 
 
 def check_username():
-    """Function docstring"""
+    # This function check the username input that is valid or not
     usernames = ['jimbo', 'giltson98', 'derekf', 'WhatSup', 'NicolEye', 'swei45', 'BaseInterpreterInterface',
                  'BaseStdIn', 'Command', 'ExecState', 'InteractiveConsole', 'InterpreterInterface', 'StartServer',
                  'bob']
