@@ -17,11 +17,11 @@ for word in re.findall('\w+', text):
     counts[word] += 1
 
 # find the length of the longest word
-MAX = 0
+max_length = 0
 for word in d1.keys():
     length = len(word)
-    if length > MAX:
-        MAX = length
+    if length > max_length:
+        max_length = length
 
 # sorted the output
 sorted_list = sorted(counts, key=counts.get)
@@ -31,4 +31,4 @@ for i in sorted_list:
 
 # use f-string to print the result
 for word in sorted_dict.keys():
-    print(f'{word:{MAX}} : {sorted_dict[word]}')
+    print(f'{word:{max_length}} : {sorted_dict[word]}')
