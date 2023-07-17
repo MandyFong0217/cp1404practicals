@@ -18,7 +18,7 @@ def main():
         try:
             print(COLOUR_TO_CODE[colour_name])
         except KeyError:
-            print("Invalid short state")
+            print("Invalid colour name")
         colour_name = input("Enter the name of colour: ")
         colour_name = colour_name.lower()
 

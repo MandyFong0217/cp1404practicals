@@ -1,34 +1,21 @@
 """
-Word Occurrences
-Estimate: 30 minutes
+Word occurrences
+Estimate: 30minutes
 Actual:   1hr minutes
 """
 
-import re
-from collections import defaultdict
+word_count = {}
+text = str(input("Text: "))
 
-text = input("Text:")
-words = text.split(' ')
+text = text.split()
 
-d1 = dict.fromkeys(words)
+for word in text:
+    if word in word_count:
+        word_count[word] += 1
+    else:
+        word_count[word] = 1
 
-counts = defaultdict(int)
-for word in re.findall('\w+', text):
-    counts[word] += 1
+max_length_word = max(text, key=len)
 
-# find the length of the longest word
-max_length = 0
-for word in d1.keys():
-    length = len(word)
-    if length > max_length:
-        max_length = length
-
-# sorted the output
-sorted_list = sorted(counts, key=counts.get)
-sorted_dict = {}
-for i in sorted_list:
-    sorted_dict[i] = counts[i]
-
-# use f-string to print the result
-for word in sorted_dict.keys():
-    print(f'{word:{max_length}} : {sorted_dict[word]}')
+for word, count in sorted(word_count.items()):
+    print(f"{word:{len(max_length_word) + 1}}: {count}")

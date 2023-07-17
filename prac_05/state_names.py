@@ -15,7 +15,6 @@ state_code = state_code.upper()
 while state_code != "":
     # 5.change to Easier to Ask Forgiveness than Permission approach
     try:
-        CODE_TO_NAME[state_code]
         print(state_code, "is", CODE_TO_NAME[state_code])
     except KeyError:
         print("Invalid short state")
