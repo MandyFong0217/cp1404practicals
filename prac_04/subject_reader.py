@@ -8,8 +8,9 @@ FILENAME = "subject_data.txt"
 
 def main():
     data = get_data()
+    print(data)
     for i in range(len(data)):
-        print(f"{data[i][0]} is taught by {data[i][1]} and has {data[i][2]} students")
+        print(f"{data[i][0]} is taught by {data[i][1]:12} and has {data[i][2]:>3} students")
 
 
 def get_data():
