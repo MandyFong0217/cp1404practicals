@@ -10,30 +10,34 @@ from prac_06.guitar import Guitar
 def main():
     guitars = []
     # Open the file for reading
-    in_file = open('guitars.csv', 'r')
+    in_file = open('guitars.csv', 'r+')
     # File format is like: Language,Typing,Reflection,Year
     # 'Consume' the first line (header) - we don't need its contents
-    in_file.readline()
-    # All other lines are language data
-    for line in in_file:
-        # print(repr(line))  # debugging
-        # Strip newline from end and split it into parts (CSV)
+    data = in_file.readlines()
+    print(data)
+    for line in data:
         parts = line.strip().split(',')
-        # print(parts)  # debugging
-        # Reflection is stored as a string (Yes/No) and we want a Boolean
-        # Reflection is stored as a string (Yes/No) and we want a Bool
-        # Construct a ProgrammingLanguage object using the elements
-        # year should be an int
         guitar = Guitar(parts[0], int(parts[1]), float(parts[2]))
-        # Add the language we've just constructed to the list
         guitars.append(guitar)
-    # Close the file as soon as we've finished reading it
-    in_file.close()
     guitars = sorted(guitars)
     for guitar in guitars:
         print(guitar)
-
-
+    print('\n')
+    print('My guitars!')
+    name = input('Name: ')
+    while name != '':
+        year = int(input('Year: '))
+        cost = float(input('Cost: $'))
+        print(f'{name} ({year}) : ${cost:.2f} added.')
+        guitar = Guitar(name, int(year), float(cost))
+        guitars.append(guitar)
+        print('\n', end='')
+        name = input('Name: ')
+    in_file.seek(0)
+    for guitar in guitars:
+        in_file.write(f'{guitar.name},{guitar.year},{guitar.cost}')
+        in_file.write('\n')
+    in_file.close()
 
 
 main()
