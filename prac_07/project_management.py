@@ -7,11 +7,9 @@ from prac_07.project import Project
 
 
 def main():
-    """Read file of programming language details, save as objects, display."""
-    # Loop through and display all languages (using their str method)
     display_menu()
-    data = []
-    get_menu_choice(input('>>> ').upper(), data)
+    projects = []
+    get_menu_choice(input('>>> ').upper(), projects)
 
 
 def display_menu():
@@ -54,18 +52,21 @@ def get_menu_choice(choice, projects):
 
 
 def read_file(filename):
-    data = []
+    """Prompt the user for a filename to load projects from and load them"""
+    temp_od_projects = []
     projects = []
     with open(filename, 'r') as in_file:
         in_file.readline()
         for x in in_file:
-            data.append(x.strip().split('\t'))
-        for i in range(len(data)):
-            projects.append(Project(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4]))
+            temp_od_projects.append(x.strip().split('\t'))
+        for i in range(len(temp_od_projects)):
+            projects.append(Project(temp_od_projects[i][0], temp_od_projects[i][1], temp_od_projects[i][2],
+                                    temp_od_projects[i][3], temp_od_projects[i][4]))
     return projects
 
 
 def display_projects(projects):
+    """Display two groups: incomplete projects; completed projects, both sorted by priority"""
     complete_projects = []
     incomplete_projects = []
     for project in projects:
@@ -84,33 +85,36 @@ def display_projects(projects):
 
 
 def filter_projects_by_date(projects):
+    """Ask the user for a date and display only projects that start after that date, sorted by date"""
     target_date = input('Show projects that start after date (dd/mm/yy): ')
     target_date = datetime.datetime.strptime(target_date, "%d/%m/%Y").date()
-    lists = []
+    filter_projects = []
     for project in projects:
         if project.start_date >= target_date:
-            lists.append(project)
-    lists = sorted(lists, key=lambda x: x.start_date)
-    for line in lists:
+            filter_projects.append(project)
+    filter_projects = sorted(filter_projects, key=lambda x: x.start_date)
+    for line in filter_projects:
         print(line)
 
 
 def add_new_project(projects):
+    """Ask the user for the inputs and add a new project to memory"""
     print("Let's add a new project")
-    name = input('Name: ')
-    Start_date = input("Start date (dd/mm/yy): ")
-    Priority = input("Priority: ")
-    Cost_estimate = input("Cost estimate: $")
-    Percent_complete = input("Percent complete: ")
-    projects.append(Project(name, Start_date, Priority, Cost_estimate, Percent_complete))
+    new_name = input('Name: ')
+    new_start_date = input("Start date (dd/mm/yy): ")
+    new_priority = input("Priority: ")
+    new_cost_estimate = input("Cost estimate: $")
+    new_percent_complete = input("Percent complete: ")
+    projects.append(Project(new_name, new_start_date, new_priority, new_cost_estimate, new_percent_complete))
     return projects
 
 
 def change_project_percentage_and_priority(projects):
-    i = 0
+    """Choose a project, then modify the completion % and/or priority"""
+    index_of_project = 0
     for line in projects:
-        print(f"{i}{line}")
-        i = i + 1
+        print(f"{index_of_project}{line}")
+        index_of_project = index_of_project + 1
     project_choice = input("Project choice: ")
     print(projects[int(project_choice)])
     new_percentage = input("New Percentage: ")
@@ -123,6 +127,7 @@ def change_project_percentage_and_priority(projects):
 
 
 def save_file(projects):
+    """Prompt the user for a filename to save projects to and save them"""
     file_to_save = input("Enter filename of save: ")
     with open(file_to_save, 'w') as write_file:
         write_file.write('Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage')
