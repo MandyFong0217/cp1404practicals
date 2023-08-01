@@ -11,4 +11,4 @@ AnotherGuitar = Guitar('Another Guitar', 2013, 10000)
 print(GibsonL_5.get_age())  # Expected 100. Got 100
 print(AnotherGuitar.get_age())  # Expected 9. Got 9
 print(GibsonL_5.is_vintage())  # Expected True. Got True
-print(AnotherGuitar.is_vintage())
+print(AnotherGuitar.is_vintage())  # print
