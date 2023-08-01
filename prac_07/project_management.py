@@ -2,9 +2,7 @@
 CP1404/CP5632 Practical
 Project Management Program
 """
-import csv
 import datetime
-import pandas as pd
 
 
 class Project:
@@ -19,7 +17,7 @@ class Project:
         self.completion_percentage = int(completion_percentage)
 
     def __repr__(self):
-        return f"  {self.name}, start: {self.start_date}, priority {self.priority}, estimate: ${self.cost_estimate}, " \
+        return f" {self.name}, start: {self.start_date}, priority {self.priority}, estimate: ${self.cost_estimate}, " \
                f"completion: {self.completion_percentage}%"
 
     def __lt__(self, other):
@@ -56,14 +54,15 @@ def get_menu_choice(choice, projects):
         get_menu_choice(input('>>> ').upper(), projects)
     elif choice == 'F':
         print('f')
+        filter_projects_by_date(projects)
         display_menu()
         get_menu_choice(input('>>> ').upper(), projects)
     elif choice == 'A':
-        print('A')
+        projects = add_new_project(projects)
         display_menu()
         get_menu_choice(input('>>> ').upper(), projects)
     elif choice == 'U':
-        print('U')
+        change_project_percentage_and_priority(projects)
         display_menu()
         get_menu_choice(input('>>> ').upper(), projects)
     elif choice == 'Q':
@@ -104,6 +103,44 @@ def display_projects(projects):
     for line in complete_projects:
         print(line)
 
-def
+
+def filter_projects_by_date(projects):
+    target_date = input('Show projects that start after date (dd/mm/yy):')
+    target_date = datetime.datetime.strptime(target_date, "%d/%m/%Y").date()
+    lists = []
+    for project in projects:
+        if project.start_date >= target_date:
+            lists.append(project)
+    lists = sorted(lists, key=lambda x: x.start_date)
+    for line in lists:
+        print(line)
+
+
+def add_new_project(projects):
+    print("Let's add a new project")
+    name = input('Name: ')
+    Start_date = input("Start date (dd/mm/yy): ")
+    Priority = input("Priority: ")
+    Cost_estimate = input("Cost estimate: ")
+    Percent_complete = input("Percent complete: ")
+    projects.append(Project(name, Start_date, Priority, Cost_estimate, Percent_complete))
+    return projects
+
+
+def change_project_percentage_and_priority(projects):
+    i = 0
+    for line in projects:
+        print(f"{i}{line}")
+        i = i + 1
+    project_choice = input("Project choice: ")
+    print(projects[int(project_choice)])
+    new_percentage = input("New Percentage: ")
+    if new_percentage != ' ' and new_percentage != '':
+        projects[int(project_choice)].completion_percentage = new_percentage
+    new_priority = input("New Priority: ")
+    if new_priority != ' ' and new_priority != '':
+        projects[int(project_choice)].priority = new_priority
+    print(projects[int(project_choice)])
+
 
 main()
