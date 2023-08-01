@@ -17,8 +17,8 @@ class Project:
         self.completion_percentage = int(completion_percentage)
 
     def __repr__(self):
-        return f" {self.name}, start: {self.start_date}, priority {self.priority}, estimate: ${self.cost_estimate}, " \
-               f"completion: {self.completion_percentage}%"
+        return f" {self.name}, start: {self.start_date.strftime('%d/%m/%Y')}, priority {self.priority}, " \
+               f"estimate: ${self.cost_estimate}, completion: {self.completion_percentage}%"
 
     def __lt__(self, other):
         return self.priority < other.priority
@@ -46,14 +46,13 @@ def get_menu_choice(choice, projects):
         display_menu()
         get_menu_choice(input('>>> ').upper(), projects)
     elif choice == 'S':
-        print('S')
+        save_file(projects)
         display_menu()
         get_menu_choice(input('>>> ').upper(), projects)
     elif choice == 'D':
         display_projects(projects)
         get_menu_choice(input('>>> ').upper(), projects)
     elif choice == 'F':
-        print('f')
         filter_projects_by_date(projects)
         display_menu()
         get_menu_choice(input('>>> ').upper(), projects)
@@ -62,7 +61,7 @@ def get_menu_choice(choice, projects):
         display_menu()
         get_menu_choice(input('>>> ').upper(), projects)
     elif choice == 'U':
-        change_project_percentage_and_priority(projects)
+        projects = change_project_percentage_and_priority(projects)
         display_menu()
         get_menu_choice(input('>>> ').upper(), projects)
     elif choice == 'Q':
@@ -76,13 +75,12 @@ def get_menu_choice(choice, projects):
 def read_file(filename):
     data = []
     projects = []
-    in_file = open(filename, 'r')
-    in_file.readline()
-    for x in in_file:
-        data.append(x.strip().split('\t'))
-    print(data)
-    for i in range(len(data)):
-        projects.append(Project(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4]))
+    with open(filename, 'r') as in_file:
+        in_file.readline()
+        for x in in_file:
+            data.append(x.strip().split('\t'))
+        for i in range(len(data)):
+            projects.append(Project(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4]))
     return projects
 
 
@@ -140,7 +138,17 @@ def change_project_percentage_and_priority(projects):
     new_priority = input("New Priority: ")
     if new_priority != ' ' and new_priority != '':
         projects[int(project_choice)].priority = new_priority
-    print(projects[int(project_choice)])
+    return projects
+
+
+def save_file(projects):
+    file_to_save = input("Enter filename of save: ")
+    with open(file_to_save, 'w') as write_file:
+        write_file.write('Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage')
+        for line in projects:
+            write_file.write('\n')
+            write_file.write(f"{line.name}\t{line.start_date.strftime('%d/%m/%Y')}\t{line.priority}\t"
+                             f"{line.cost_estimate}\t{line.completion_percentage}")
 
 
 main()
