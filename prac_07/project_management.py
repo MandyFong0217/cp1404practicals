@@ -3,25 +3,7 @@ CP1404/CP5632 Practical
 Project Management Program
 """
 import datetime
-
-
-class Project:
-    """Represent information about a programming language."""
-
-    def __init__(self, name, start_date, priority, cost_estimate, completion_percentage):
-        """Construct a ProgrammingLanguage from the given values."""
-        self.name = name
-        self.start_date = datetime.datetime.strptime(start_date, "%d/%m/%Y").date()
-        self.priority = int(priority)
-        self.cost_estimate = cost_estimate
-        self.completion_percentage = int(completion_percentage)
-
-    def __repr__(self):
-        return f" {self.name}, start: {self.start_date.strftime('%d/%m/%Y')}, priority {self.priority}, " \
-               f"estimate: ${self.cost_estimate}, completion: {self.completion_percentage}%"
-
-    def __lt__(self, other):
-        return self.priority < other.priority
+from prac_07.project import Project
 
 
 def main():
@@ -40,8 +22,7 @@ def display_menu():
 def get_menu_choice(choice, projects):
     """Check the user choice and pass to other function that used"""
     if choice == 'L':
-        # filename = input('Please enter the filename you want to load\n>>> ')
-        filename = 'projects.txt'
+        filename = input('Please enter the filename you want to load\n>>> ')
         projects = read_file(filename)
         display_menu()
         get_menu_choice(input('>>> ').upper(), projects)
@@ -94,7 +75,7 @@ def display_projects(projects):
             incomplete_projects.append(project)
     incomplete_projects = sorted(incomplete_projects)
     complete_projects = sorted(complete_projects)
-    print('Incomplete projects: ')
+    print('Incomplete projects:')
     for line in incomplete_projects:
         print(line)
     print('Completed projects:')
@@ -103,7 +84,7 @@ def display_projects(projects):
 
 
 def filter_projects_by_date(projects):
-    target_date = input('Show projects that start after date (dd/mm/yy):')
+    target_date = input('Show projects that start after date (dd/mm/yy): ')
     target_date = datetime.datetime.strptime(target_date, "%d/%m/%Y").date()
     lists = []
     for project in projects:
@@ -119,7 +100,7 @@ def add_new_project(projects):
     name = input('Name: ')
     Start_date = input("Start date (dd/mm/yy): ")
     Priority = input("Priority: ")
-    Cost_estimate = input("Cost estimate: ")
+    Cost_estimate = input("Cost estimate: $")
     Percent_complete = input("Percent complete: ")
     projects.append(Project(name, Start_date, Priority, Cost_estimate, Percent_complete))
     return projects
@@ -134,10 +115,10 @@ def change_project_percentage_and_priority(projects):
     print(projects[int(project_choice)])
     new_percentage = input("New Percentage: ")
     if new_percentage != ' ' and new_percentage != '':
-        projects[int(project_choice)].completion_percentage = new_percentage
+        projects[int(project_choice)].completion_percentage = int(new_percentage)
     new_priority = input("New Priority: ")
     if new_priority != ' ' and new_priority != '':
-        projects[int(project_choice)].priority = new_priority
+        projects[int(project_choice)].priority = int(new_priority)
     return projects
 
 
@@ -148,7 +129,7 @@ def save_file(projects):
         for line in projects:
             write_file.write('\n')
             write_file.write(f"{line.name}\t{line.start_date.strftime('%d/%m/%Y')}\t{line.priority}\t"
-                             f"{line.cost_estimate}\t{line.completion_percentage}")
+                             f"{line.cost_estimate:.2f}\t{line.completion_percentage}")
 
 
 main()
