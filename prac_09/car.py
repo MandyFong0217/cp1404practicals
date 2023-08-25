@@ -1,6 +1,8 @@
 """
 CP1404/CP5632 Practical
 Car class
+Estimate time: 20min
+Actual time: 20min
 """
 
 

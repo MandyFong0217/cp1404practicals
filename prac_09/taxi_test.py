@@ -12,7 +12,7 @@ my_taxi = Taxi('Prius 1', 100)
 
 # Drive 40 km
 my_taxi.drive(40)
-
+fgfg
 # Display my_taxi detail and current fare
 print(my_taxi)
 
